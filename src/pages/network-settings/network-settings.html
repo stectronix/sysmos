@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" height="40" src="assets/img/logo.png" />
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2>Estado de Red</h2>
+
+  <ion-grid>
+    <ion-row style="text-align: center;">
+      <ion-col>
+        <div class="tx-step-wrapper" [ngClass]="{'tx-step-success': deviceStatus.power >= 30, 'tx-step-muted': 30 > deviceStatus.power && deviceStatus.power >= 15 , 'tx-step-danger': deviceStatus.power < 15}">
+          <ion-icon name="barcode" class="tx-main-icon"></ion-icon>
+          <div class="tx-status-icon-wrapper">
+            <ion-icon name="checkmark" class="tx-status-icon" *ngIf="deviceStatus.power >= 30"></ion-icon>
+            <ion-icon name="close" class="tx-status-icon" *ngIf="deviceStatus.power < 30"></ion-icon>
+          </div>
+          <p>{{deviceStatus.power}}%</p>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="tx-step-wrapper" [ngClass]="{'tx-step-success': deviceStatus.network.status === 1, 'tx-step-muted': deviceStatus.network.status === 0, 'tx-step-danger': !deviceStatus}">
+          <ion-icon name="wifi" class="tx-main-icon"></ion-icon>
+          <div class="tx-status-icon-wrapper">
+            <ion-icon name="checkmark" class="tx-status-icon" *ngIf="deviceStatus.network.status === 1"></ion-icon>
+            <ion-icon name="close" class="tx-status-icon" *ngIf="deviceStatus.network.status === 0 || !deviceStatus"></ion-icon>
+            <ion-spinner *ngIf="wifiSuccess === null"></ion-spinner>
+          </div>
+          <p>Conectado a Red</p>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="tx-step-wrapper" [ngClass]="{'tx-step-success': deviceStatus.platform.status === 1, 'tx-step-muted': deviceStatus.platform.status === 0, 'tx-step-danger': !deviceStatus}">
+          <ion-icon name="globe" class="tx-main-icon"></ion-icon>
+          <div class="tx-status-icon-wrapper">
+            <ion-icon name="checkmark" class="tx-status-icon" *ngIf="deviceStatus.platform.status === 1"></ion-icon>
+            <ion-icon name="close" class="tx-status-icon" *ngIf="deviceStatus.platform.status === 0 || !deviceStatus"></ion-icon>
+            <ion-spinner *ngIf="sysmosSuccess === null"></ion-spinner>
+          </div>
+          <p>Conectado a Sysmos</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-list>
+
+    <button ion-item (click)="openZonesModal()">
+      <h2>Seleccione sus zonas sísmicas</h2>
+      <p>Suscrito a {{deviceStatus.zones.length}} zonas sísmicas</p>
+    </button>
+
+  </ion-list>
+  <ion-list>
+
+    <ion-item>
+      <ion-label> Estado de Red Inalámbrica</ion-label>
+      <ion-toggle checked="true" [ngModel]="deviceStatus.network.status !== -1" (ngModelChange)="toggleWifiNetwork($event)"></ion-toggle>
+    </ion-item>
+
+    <button ion-item (click)="openWifiModal()">
+      <h2>Red inalámbrica
+        <span *ngIf="deviceStatus.network.status !== -1">Activa</span>
+        <span *ngIf="deviceStatus.network.status === -1">Desactivada</span>
+      </h2>
+      <p *ngIf="deviceStatus.network.status === -1">Red inalámbrica desactivada por usuario</p>
+      <p *ngIf="deviceStatus.network.status === 0">Desconectado</p>
+      <p *ngIf="deviceStatus.network.status === 1">Conectado a {{deviceStatus.network.ssid}}</p>
+    </button>
+
+  </ion-list>
+  <ion-list>
+
+    <ion-item>
+      <ion-label> Estado de Red Sysmos</ion-label>
+      <ion-toggle checked="true" [ngModel]="deviceStatus.platform.status !== -1" (ngModelChange)="toggleSysmosNetwork($event)"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <h2>Red Sysmos
+        <span *ngIf="deviceStatus.platform.status !== -1">Activa</span>
+        <span *ngIf="deviceStatus.platform.status === -1">Desactivada</span>
+      </h2>
+      <p *ngIf="deviceStatus.platform.status === -1">Red Sysmos desactivada por usuario</p>
+      <p *ngIf="deviceStatus.platform.status === 0">Desconectado de red Sysmos</p>
+      <p *ngIf="deviceStatus.platform.status === 1">Dispositivo conectado a Sysmos</p>
+    </ion-item>
+
+  </ion-list>
+
+
+</ion-content>

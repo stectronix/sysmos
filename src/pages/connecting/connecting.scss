@@ -1,0 +1,33 @@
+page-connecting {
+  ion-content {
+    background: #d90023 url('../assets/img/home-bkg.jpg') no-repeat;
+    background-size: cover;
+    div {
+      width: 100%;
+      text-align: center;
+      color: #ffffff;
+      font-size: 24px;
+      ion-spinner {
+        * {
+          width: 46px;
+          height: 46px;
+          stroke: #fff !important;
+        }
+        color: #fff;
+        &.spinner-circles circle,
+        &.spinner-bubbles circle,
+        &.spinner-dots circle {
+          fill: #fafafa !important;
+        }
+      }
+    }
+  }
+
+  ion-list {
+    height: 356px;;
+  }
+
+  ion-scroll {
+    height: 356px;
+  }
+}

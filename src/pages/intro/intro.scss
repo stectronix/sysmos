@@ -1,0 +1,12 @@
+.ios,
+.md {
+  page-intro {
+    ion-slide {
+      background: #d90023 url('../assets/img/home-bkg.jpg') no-repeat;
+      background-size: cover;
+    }
+    ion-slide img {
+      width: 100% !important;
+    }
+  }
+}

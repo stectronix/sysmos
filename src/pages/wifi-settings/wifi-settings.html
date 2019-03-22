@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button navPop ion-button icon-only>
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Configurar Red Inalámbrica</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h2>Conectar a Red Inalámbrica</h2>
+  <p>Seleccione y configure los datos necesarios para conectar su dispositivo a su red inalámbrica Wifi.</p>
+
+  <ion-list>
+
+    <button ion-item (click)="prepareNetwork(an.ssid)" *ngFor="let an of deviceStatus.available_networks">
+      <h2>{{an.ssid}}</h2>
+      <p *ngIf="deviceStatus.network && deviceStatus.network.status === 1 && an.ssid === deviceStatus.network.ssid">Conectado</p>
+    </button>
+
+  </ion-list>
+
+
+  <!--ion-item>
+    <ion-label color="primary" floating>Red Inalámbrica</ion-label>
+    <ion-input [(ngModel)]="network.ssid"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating>Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="network.password"></ion-input>
+  </ion-item -->
+
+</ion-content>
+
+<!-- ion-footer>
+  <button ion-button full large (click)="connectToNetwork()">CONECTAR</button>
+  <p style="font-size: 11px; color: #999; padding: 0 16px; text-align: center;">* Luego de conectarse a la red inalámbrica, recuerde vincular su dispositivo a su cuenta en
+    <a href="{{platformUrl}}" target="_blank">nuestro portal web!</a>
+  </p>
+
+</ion-footer -->

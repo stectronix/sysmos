@@ -1,0 +1,8 @@
+{
+  "name": "sysmos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "2e871a19"
+}

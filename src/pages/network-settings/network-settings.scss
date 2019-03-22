@@ -1,0 +1,46 @@
+page-network-settings {
+  .tx-step-wrapper {
+    position: relative;
+    display: inline-block;
+    background-color: #f0f0f0;
+    height: 20vw;
+    width: 20vw;
+    border-radius: 50%;
+    color: #666;
+    text-align: center;
+    &.tx-step-success {
+      color: #32d296 !important;
+      background-color: #EDFBF6 !important;
+    }
+    &.tx-step-danger {
+      color: #f0506e !important;
+      background-color: #FEF4F6 !important;
+    }
+    &.tx-step-muted {
+      color: #ddd !important;
+      background-color: #F8F8F8 !important;
+    }
+    .tx-main-icon {
+      font-size: 15vw;
+      position: relative;
+      z-index: 999;
+    }
+    .tx-status-icon-wrapper {
+      position: absolute;
+      display: inline-block;
+      bottom: 0;
+      right: 0;
+      height: 10vw;
+      width: 10vw;
+      border-radius: 50%;
+      background-color: inherit;
+      z-index: 1;
+      text-align: center;
+      
+      .tx-status-icon {
+        font-size: 10vw;
+        line-height: 10vw;
+      }
+    }
+  }
+}

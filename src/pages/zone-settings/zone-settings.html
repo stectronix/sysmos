@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button navPop ion-button icon-only>
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Registrarse a Zonas Sísmicas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <h2>Seleccione zonas sísmicas</h2>
+  <p>Seleccione las zonas sísmicas cercanas a usted.</p>
+
+  <ion-list>
+    <ion-list-header>Zonas Disponibles</ion-list-header>
+    <ng-container *ngFor="let zone of availableZones">
+      <ion-item *ngIf="zone !== null ? true: false" (click)="selectZone(zone.id)">
+        <ion-icon name="pulse" item-left></ion-icon>
+        {{zone.name}}
+        <ion-icon *ngIf="inSelectedZones(zone.id)" name="checkmark" item-right style="color: green;"></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button full large (click)="updateZones()">GUARDAR</button>
+</ion-footer>

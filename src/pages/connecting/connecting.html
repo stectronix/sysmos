@@ -1,0 +1,61 @@
+<ion-content>
+
+  <div class="tx-vertically-centered">
+    <div *ngIf="dataService.bleStatus === 'searching'">
+      Seleccione su dispositivo Sysmos!
+      <div style="font-size: 13px; width: 100%;">
+        <span *ngIf="mobilePlatform === 'ios'">Active bluetooth
+        </span>
+        <br></div>
+      <br/>
+      <ion-card>
+        <ion-card-content>
+          <ion-list>
+            <ion-scroll scrollY="true">
+              <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+                <h2>{{ device.name || 'Sin Nombre' }}</h2>
+                <p>{{ device.id }}</p>
+                <p>RSSI: {{ device.rssi }}</p>
+              </button>
+            </ion-scroll>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-spinner light></ion-spinner>
+      <br/>
+      <br/>Buscando
+    </div>
+    <div *ngIf="dataService.bleStatus === 'connecting'">
+      <div style="font-size: 13px; width: 100%;">
+        <br></div>
+      <br/>
+      <ion-spinner light></ion-spinner>
+      <br/>
+      <br/>Conectando</div>
+    <div *ngIf="dataService.bleStatus === 'syncing'">
+      <div style="font-size: 13px; width: 100%;">
+        <br></div>
+      <br/>
+      <ion-spinner light></ion-spinner>
+      <br/>
+      <br/>Sincronizando</div>
+    <div *ngIf="dataService.bleStatus === 'syncing-error'">Error al sincronizar!
+      <br>
+      <button ion-button large (click)="beginScan()">Reintentar</button>
+    </div>
+    <div *ngIf="dataService.bleStatus === 'bluetooth-off'">
+      Por favor, active Bluetooth
+      <br/>
+      <br>
+      <button ion-button large (click)="enableBluetooth()">
+        <ion-icon name="bluetooth"></ion-icon>&nbsp;&nbsp;Activar Bluetooth</button>
+    </div>
+    <div *ngIf="dataService.bleStatus === 'bluetooth-disabled'">No hay conexión Bluetooth
+      <br/>
+      <br>
+      <button ion-button large (click)="enableBluetooth()">
+        <ion-icon name="bluetooth"></ion-icon>&nbsp;&nbsp;Activar Bluetooth</button>
+    </div>
+  </div>
+
+</ion-content>
