@@ -22,7 +22,7 @@ export class NetworkSettingsPage {
 
     this.deviceStatusInterval = setInterval(() => {
       this.deviceStatus = this.dataService.getDeviceStatus();
-    }, 1000);
+    }, 3000);
 
   }
 

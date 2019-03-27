@@ -137,7 +137,7 @@ export class ConnectingPage {
         this.clearScanningInterval();
         this.navCtrl.setRoot('Tabs');
       }
-    }, 1000);
+    }, 10000);
   }
 
   deviceSelected(device) {

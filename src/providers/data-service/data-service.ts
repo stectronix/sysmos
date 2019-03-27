@@ -76,7 +76,7 @@ export class DataServiceProvider {
   bleStatus: string;
   scanningInterval: any = null;
   isScanning: boolean = false;
-  timeBetweenScans = 1500; // ms
+  timeBetweenScans = 9500; // ms
   scansCount = 0;
 
   devices: any[] = [];
@@ -85,7 +85,7 @@ export class DataServiceProvider {
   peripheral: any = {};
 
   statusInterval: any = null;
-  bleTimeBetweenUpdates: number = 2000; // millis
+  bleTimeBetweenUpdates: number = 10000; // millis
 
   bleLoading: any = null;
 
@@ -284,7 +284,7 @@ export class DataServiceProvider {
     this.isScanning = true;
 
     // Se realiza scan por 2 segundos
-    this.ble.scan([], 2).subscribe(
+    this.ble.scan([], 10).subscribe(
       device => this.bleOnDeviceDiscovered(device), // Se ejecuta por cada dispositivo encontrado
       error => this.bleScanError(error) // Se ejecuta por cada dispositivo encontrado
     );
@@ -460,7 +460,7 @@ export class DataServiceProvider {
   presentBleLoading() {
     this.bleLoading = this.loadingCtrl.create({
       content: "Actualizando...",
-      duration: 2500
+      duration: 6000
     });
     this.bleLoading.present();
   }
